@@ -1,0 +1,331 @@
+%!TEX program = xelatex
+% 完整编译: xelatex -> biber/bibtex -> xelatex -> xelatex
+% 欢迎参加《瀚海之巅》项目的供题或征解活动！
+% ————————————————————模板使用说明——————————————————————————
+%本模板改编自elegantpaper模板，该模板的环境使用方式与大多数模板一致，如有疑问可以阅读官方文件的解释，或直接阅读.cls文件的内容。
+%文档标题应当注明征解及其期号和题号，或供题
+%作者写你自己即可，但为了排版方便起见，建议在题目末尾“供稿人”处加上你的名字。
+%日期随意
+%正文部分已经列举了你可能会用到的列表环境的样式，你可以摸索看看怎么合适。
+\documentclass[lang=cn,12pt,a4paper]{elegantpaper}
+
+\title{《瀚海之巅》2024 第3期·征解解答}
+\author{中国科大数学科学学院团委\quad《瀚海之巅》项目组}
+\date{\zhtoday}
+
+% 本文档命令
+\newcommand{\ccr}[1]{\makecell{{\color{#1}\rule{0cm}{0cm}}}}
+\usepackage{array}
+\usepackage{tikz}   %交换图表
+\usepackage{tikz-cd}
+\usepackage[mathscr]{euscript}
+\usepackage{draftwatermark}         % 所有页加水印
+\SetWatermarkText{\includegraphics{image/logo}} % 设置水印内容
+\SetWatermarkLightness{0}             % 设置水印透明度 0-1 对图片无效
+\SetWatermarkScale{0.6} % 设置水印大小 0-1
+\newenvironment{solution}{\begin{proof}[\bf 解]}{\end{proof}}
+
+
+\begin{document}
+
+\maketitle
+\begin{enumerate}
+	\item 证明:如果映射 $f:[0,1]\rightarrow[0,1]$ 连续, $f(0)=0,f(1)=1$,并且在 $[0,1]$ 上 $(f\circ f)(x)\equiv x,$ 则 $f(x)\equiv x.$
+	
+	\begin{flushright}
+		\kaishu
+		供题人:郭维基
+	\end{flushright}
+	
+	\begin{proof}
+		假设存在 $(0,1)$ 上的一点 $a$ 使 $f(a)\neq a$, 设 $f(a)=b$, 则 $f(b)=f(f(a))=a$. 不妨设 $a<b$. 构造集合 $T=\{t|\forall x\in[t,a],f(x)>x\}$. 由 $f(a)=b>a$ 知集合 $T$ 非空, 由 $f(0)=0$ 知集合 $T$ 有下界,于是集合 $T$ 有下确界,设 $c=\inf T$. 由映射 $f$ 的连续性可知 $c<a$ 且 $f(c)=c$. 因为 $f(c)=c<a,f(a)=b>a$, 故存在 $d\in(c,a)$ 使 $f(d)=a$. 但由此有 $b=f(a)=f(f(d))=d<a<b$, 矛盾!所以不存在 $a\in(0,1)$ 使 $f(a)\neq a$.亦即 $f(x)\equiv x$.
+	\end{proof}
+	
+	
+	\item 称数列$\{a_n\}_{n\geq 0}$为\textbf{完全单调的(completely monotonic)}, 若对任意$k,n\in\mathbb N$, 总有$(-1)^k(\Delta^k a)_n\geq 0$, 这里$\Delta$是差分算子, 即$(\Delta a)_n=a_{n+1}-a_n$.
+	
+	\begin{enumerate}
+		\item 若$\mu$是$[0,1]$上的某个Borel测度, 令$a_n=\int x^n\mathrm{d}\mu$, 验证$\{a_n\}$是完全单调数列.
+
+		\item 考察$\{a_n\}$的对数凸性, 即$a_na_{n+2}\geq a_{n+1}^2$, $n\in\mathbb N$. Hausdorff矩问题是说: 对任意的完全单调数列$\{a_n\}$, 是否总存在Borel测度$\mu$满足(a)的条件. 在承认其正确性的前提下, 直接推出$\{a_n\}$具有对数凸性.
+
+		\item 考虑更加初等的证明. 设数列$\{a_n\}$是完全单调的.
+
+		\begin{enumerate}[i]
+			\item 证明: 对任意$k,m,n\in \mathbb N$, \[(-1)^k(\Delta^k a)_m=\sum_{i=0}^{n}(-1)^{k+i}\binom{n}{i}(\Delta^{k+i}a)_{m+n-i}.\]
+
+			\item 对于$u,v>0$, $uv=\dfrac{1}{4}$, 证明: $u(\Delta^2 a)_0+(\Delta a)_1+va_2\geq0$.
+
+			\item 证明: $a_na_{n+2}\geq a_{n+1}^2$, $n\in\mathbb N$.
+		\end{enumerate}
+	\end{enumerate}
+	
+	\begin{flushright}
+		\kaishu
+		供题人：胡洁洋
+	\end{flushright}
+	
+	\begin{proof}
+		\begin{enumerate}
+		\item 由\[\begin{aligned}
+			(\Delta^k a)_n&=\sum_{i=0}^{k}(-1)^{i}\binom{k}{i}a_{n+i}\\
+			&=\sum_{i=0}^{k}(-1)^{i}\binom{k}{i}\int x^{n+i}\mathrm{d} \mu\\
+			&=\int x^n\sum_{i=0}^{k}(-1)^i\binom{k}{i}x^i\mathrm{d}\mu\\
+			&=\int x^n(x-1)^k\mathrm d\mu\\
+			&=(-1)^k\int x^n(1-x)^k\mathrm d\mu,
+		\end{aligned}\]进而$(-1)^k(\Delta^k a)_n\geq 0$, 即$\{a_n\}$完全单调.
+		
+		\item 设测度$\mu$满足$a_n=\int x^n \mathrm{d}\mu$, 结论由Cauchy不等式立得.
+		
+		\item
+			\begin{enumerate}[i]
+				\item 对$n$使用归纳法. $n=0,1$, 结论平凡. 对所有小于$n(n\geq 1)$假设成立, 对于$n$, 由归纳假设及$n=1$情形,
+					\[\begin{aligned}
+						&\quad(-1)^k(\Delta^ka)_m \\
+						&=\sum\limits_{i=0}^{n-1}(-1)^{k+i}\binom{n-1}{i}(\Delta ^{k+i}a)_{m+n-1-i}\\
+						&=\sum\limits_{i=0}^{n-1}\binom{n-1}{i} [(-1)^{k+i+1}(\Delta^{k+i+1}a)_{m+n-1-i}+(-1)^{k+i}(\Delta^{k+i}a)_{m+n-i}]\\&=\sum\limits_{i=0}^{n}(-1)^{k+i}[\binom{n-1}{i}+\binom{n-1}{i-1}](\Delta ^{k+i}a)_{m+n-i}\\
+						&=\sum\limits_{i=0}^{n}(-1)^{k+i}\binom{n}{i}(\Delta ^{k+i}a)_{m+n-i},
+					\end{aligned}\]
+					由归纳法原理, 结论成立.
+
+				\item 使用$\varepsilon$-room技术. 只需对任意$\alpha\in(0,1)$, 证明$u(\Delta^2 a)_0+\alpha(\Delta a)_1+va_2>0$.
+
+					利用(i), 将三者展开, 有
+					\[\left\{
+						\begin{aligned}
+							-(\Delta a)_1&=\sum_{i=0}^{n}(-1)^{i+1}\binom{n}{i}(\Delta ^{i+1}a)_{n+1-i},\\
+							(\Delta^2 a)_0 &=\sum_{i=0}^{n}(-1)^{i+2}\binom{n}{i}(\Delta ^{i+2}a)_{n-i},\\
+							a_2&=\sum_{i=0}^{n}(-1)^{i}\binom{n}{i}(\Delta ^{i}a)_{n+2-i},\\
+						\end{aligned}\right.
+					\]
+					我们证明存在$n$, $u(\Delta^2 a)_0+\alpha(\Delta a)_1+va_2$的$(-1)^{i+1}(\Delta^{i+i}a)_{n+1-i}$前系数大于$0$, 即\[u\binom{n}{i-1}+v\binom{n}{i+1}>\alpha\binom{n}{i},\]进一步化简, 即\[\alpha+u+v<(n+1)\left(\frac{u}{n-i+1}+\frac{v}{i+1}\right),\]由Cauchy不等式, 只需保证$\alpha+u+v<\dfrac{(n+1)(\sqrt{u}+\sqrt{v})^2}{n+2}$, 取\[n=\left[\frac{(\sqrt{u}+\sqrt{v})^2}{1-\alpha}\right]+1\]即可. 取这个$n$, 即有\[u(\Delta^2 a)_0+\alpha(\Delta a)_1+va_2=\sum \ast\cdot (-1)^{i+1}(\Delta^{i+1}a)_{n+1-i}\geq 0,\]这里的$\ast$为某个正数. 再令$\alpha\to 1$, 知$u(\Delta^2 a)_0+(\Delta a)_1+va_2\geq0$.
+
+				\item 在(ii)中取$u(\Delta^2 a)_0=va_2$, 有$-\Delta a_1=a_1-a_2\leq \sqrt{a_2(a_0-2a_1+a_2)}$, 两边平方即有$a_0 a_2\geq a_1^2$, 对于一般的$n=n_0$, 由数列$\{a_{n+n_0}\}$也是完全单调的, 故$a_{n_0}a_{n_0+2}\geq a_{n_0+1}^2$.
+			\end{enumerate}
+		\end{enumerate}
+		
+	\end{proof}
+	
+	
+	\item 证明$\zeta(\frac{1}{2}+i \tau) \ll \tau^{\frac{1}{6}}\log \tau \quad (\tau>0, \tau \to \infty).$ 
+		\begin{flushright}
+			\kaishu
+			供题人：杨文颜
+		\end{flushright}
+		
+	\begin{proof}
+		我们知道
+		\begin{lemma}
+			设$s=\sigma +i \tau, \sigma_0 > 0, 0 < \delta < 1$. 对$\sigma \geq \sigma_0, x \geq 1, 0 < |\tau| \leq (1-\delta) 2\pi x$一致地有
+			\[ \zeta(s)=\sum_{n \leq x} \frac{1}{n^s} - \frac{x^{1-s}}{1-s} + O(x^{-\sigma}). \]
+		\end{lemma}
+
+		根据如下van der Corput不等式，即
+		\begin{lemma}
+			\begin{enumerate}
+				\item
+				令$a,b \in \mathbb{R}, a<b, f \in C^{2}([a,b]), b-a=N$，且
+				\[ |f''(t)| \asymp \lambda >0 \quad (a<t<b),\]
+
+				那么
+
+				\[ \sum_{a < n \leq b} e^{2 \pi i f(n)} \ll N \lambda^{1/2} + \lambda^{-1/2}.\]
+				\item
+				令$a,b \in \mathbb{R}, a<b, f \in C^{3}([a,b]), b-a=N$，且
+				\[ |f'''(t)| \asymp \lambda >0 \quad (a<t<b),\]
+
+				那么
+
+				\[ \sum_{a < n \leq b} e^{2 \pi i f(n)} \ll N \lambda^{1/6} + N^{1/2} \lambda^{-1/6}.\]
+			\end{enumerate}
+		\end{lemma}
+		取$f(n)=-(\tau/2\pi) \log t$可以得到估计
+		\[ \sum_{a < n \leq b} n^{-i \tau} \ll \min(\tau^{1/2}+a\tau^{-1/2}, a^{1/2}\tau^{1/6}+a\tau^{-1/6}).\]
+		对$\tau>0, a < b \leq 2a$一致成立，因此显然有
+		\begin{align*}
+			\sum_{a < n \leq b} n^{-1/2-i \tau} &\ll \min ((\tau/a)^{1/2}+(a/\tau)^{1/2}, \tau^{1/6}+a^{1/2}\tau^{-1/6})\\
+			&\ll \min (\tau^{1/6}, (\tau/a)^{1/2}).
+		\end{align*}
+		对于$r \leq \log x/ \log 2$, 选择$a=2^r, b=\min (2^{r+1}, x)$并将上述估计相加, 得
+		\[ \sum_{n \leq x} n^{-1/2-i \tau} \ll \tau^{1/6} \log \tau \quad(x \ll \tau)\]
+		代入$x=\tau$即可得到上述估计.
+	\end{proof}
+		
+	\item 计算$j(\sqrt{3} i)$的值.
+	\begin{flushright}
+		\kaishu
+		供题人：杨文颜
+	\end{flushright}
+
+	\begin{proof}
+		首先我们注意到Hecke算子$T_2$作用在$j$函数上可以得到如下恒等式。
+
+		\[ j(2\tau)+j(\dfrac{1+\tau}{2})+j(\dfrac{\tau}{2})= (j(\tau)-744)^2-2\cdot 196884+ 3\cdot 744.\]
+		代入$\tau= \dfrac{1+\sqrt{3}i}{2}$后并且由于$j(\dfrac{1+\sqrt{3}i}{2})=0$，我们显然有
+		\[ 3 \cdot j(\sqrt{3}i)=j(1+\sqrt{3}i)+j(\dfrac{1+\sqrt{3}i}{4})+j(\dfrac{3+\sqrt{3}i}{4})=744^2-2\cdot 196884+3\cdot 744.\]
+		从而
+		\[ j(\sqrt{3}i)=\dfrac{744^2-2\cdot 196884+3\cdot 744}{3}=54000.\]
+	\end{proof}
+
+	此结果已经用python程序检查，检查代码与计算结果如下。
+
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[scale=0.33]{image/28}
+		\caption{检查代码}
+	\end{figure}
+
+	\begin{figure}[ht]
+		\centering
+		\includegraphics[scale=0.33]{image/76}
+		\caption{计算结果}
+	\end{figure}
+
+
+	\item(Apostol)
+
+	我们记
+	\[G(x)=\sum_{n\geq 1} \dfrac{n^5x^n}{1-x^n},\]
+	且
+	\[f(x)=\sum_{n\geq 1, n \textbf{奇数}}\dfrac{n^5x^n}{1+x^n}.\]
+
+	\begin{enumerate}
+		\item 证明$F(x) = G(x)-34G(x^2)+64G(x^4).$
+
+		\item 证明
+
+		\[ \sum_{n\geq 1, n \textbf{奇数}} \dfrac{n^5}{1+e^{n\pi}} = \frac{31}{504}.\]
+	\end{enumerate}
+	\begin{flushright}
+		\kaishu
+		供题人：杨文颜
+	\end{flushright}
+
+	\begin{proof}
+		\begin{enumerate}
+			\item
+			显然
+			\[ \sum_{n \geq 1} \dfrac{n^5x^n}{1-x^n} = \sum_{n \geq 1}\sigma_{5}(n)x^n.\]
+
+			于是
+
+			\[ G(n) = \sigma_{5}(n).\]
+
+			类似读者可以证明
+
+			\[ r(n)=\sum_{p|n, p \textbf{奇数}}p^5 \cdot (-1)^{n/p+1}\]
+
+			满足
+
+			\[ F(x) = \sum_{n \geq 1}r(n)x^n.\]
+
+			对于奇数来说
+
+			\[ r(n)=\sigma_{5}(n),\]
+
+			并且
+
+			\[ r(2^{\alpha}n)= - \sigma_{5}(n). \quad (\alpha \geq 1)\]
+
+			下面设$n$是一个奇数，那么
+
+			\[ r(2n)= -\sigma_{5}(n) = \sigma_{5}(2n)-34\sigma_{5}(n).\]
+
+			并且$\alpha \geq 2$时自然有
+
+			\begin{align*}
+				&\sigma_{5}(2^{\alpha}n)-34\sigma_{5}(2^{\alpha-1}n)+64\sigma_{5}(2^{\alpha-1}n) \\
+				=&\sigma_{5}(n) \cdot ((1+2^5+\cdots+2^{5\alpha})-34(1+2^5+\cdots+2^{5(\alpha-1)}) \\
+				&\;+64(1+2^5+\cdots+2^{5(\alpha-2)})) \\
+				=&-\sigma_{5}(n).
+			\end{align*}
+
+			故自然得到要求证等式。
+			\item 不难看出
+			\[
+			\begin{aligned}
+				&\quad\sum_{n\geq 1, n \textbf{奇数}}\dfrac{n^5 e^{-n\pi}}{1+e^{-n\pi}}=F(e^{-\pi}) \\
+				&=G(e^{-\pi})-34G(e^{-2\pi})+64G(e^{-4\pi})=A(\frac{i}{2})-34A(i)+64A(2i).
+			\end{aligned}
+			\]
+			其中
+			\[A(\tau) =\sum_{n \geq 1} \sigma_{5}(n) e^{2\pi i n \tau}\]
+			自然满足
+			\[ 1-504A(\tau)=E_{6}(\tau).\]
+
+			$E_6$为模形式，所以不难知道
+			\[ E_6(\frac{i}{2})=-64E_6(2i).\]
+			且有熟知结论
+			\[E_6(i)=0.\]
+			不难证明上述结论.
+
+		\end{enumerate}
+	\end{proof}
+
+	
+	\item 对正整数 $n$, 设 $x_{ij} \in [0,1]$, $\forall 1 \leq i,j \leq n$. 证明: \[\prod_{j=1}^{n}(1 - \prod_{i=1}^{n}x_{ij}) + \prod_{i=1}^{n}(1 - \prod_{j=1}^{n}(1 - x_{ij})) \geq 1.\]
+
+
+	\begin{flushright}
+		\kaishu
+		供题人：邓博文
+	\end{flushright}
+
+	\begin{proof}
+
+		考虑矩阵 $A = (a_{ij})_{n \times n}$, 满足 \[a_{ij} \in \{0,1\}, \text{且}P(a_{ij} = 1) = x_{ij}, P(a_{ij} = 0) = 1 - x_{ij}, \forall 1 \leq i,j \leq n\]
+
+		设事件 \[M = \{A \text{的每一列都有} 0\}\] \[N = \{A \text{的每一行都有} 1\}\] 则 \[P(M) = \prod_{j=1}^{n}(1 - \prod_{i=1}^{n}x_{ij})\] \[P(N) = \prod_{i=1}^{n}(1 - \prod_{j=1}^{n}(1 - x_{ij}))\]
+
+		注意到 $M$ 和 $N$ 的并是必然事件, 因为如果 $M$ 不成立, 则 $A$ 中必然有一列全是 $1$, 此时 $A$ 的每一行都有 $1$, 故 $N$ 成立. 所以 \[\text{LHS} = P(M) + P(N) \geq P(M \cup N) = 1\] 证毕.
+
+	\end{proof}
+		
+	\item 设$L/K$为可分代数扩张. $f\in K[X_1,\dots,X_n]$. 存在$g\in L[X_1,\dots,X_n]$, $f=g^m$. 证明: 存在$c\in K$, $h\in K[X_1,\dots,X_n]$, 使得$f=ch^m$.
+
+	\begin{flushright}
+		\kaishu
+		供题人：孙之棋
+	\end{flushright}
+		
+	\begin{proof}
+		\begin{enumerate}
+			\item 由于可取$L/F$的正规闭包，故不妨设$L/F$为正规扩张。设$f$在$L$中不可约分解为$$f=\prod_{i=1}^k p_i^{mn_i}$$
+			对任意$p_i$, 对任意$\sigma \in \mathrm{Gal}(L/F)$, $\sigma(p_i)$也必定在$f$的不可约分解中出现, 从而与某个$p_j$相差常数倍. 故$f$可分解为$$f=c\prod_{i=1}^s(\prod_{j=1}^{t_i} p_{ij}^{n_{i}})^m$$
+			其中$c\in L$, $p_{i1},\dots ,p_{it_i}$为$\mathrm{Gal}(L/K)$的一个轨道. 由于$$\prod_{j=1}^{t_i} p_{ij}^{n_{i}}$$是$\mathrm{Gal}(L/K)$不变的，且因为$L/K$可分，故其属于$K[X_1,\dots,X_n]$. 对比系数可知$c\in K$.
+		\end{enumerate}
+	\end{proof}
+
+	\item 设$X_i\sim U(0,1)$独立同分布, $i\geq 1$. 记$S_n=\sum_{i=1}^{n}X_i$, 定义
+		\begin{equation*}
+			N=\min\{n\in\mathbb{N}\mid S_n\geq 1\}.
+		\end{equation*}
+		求$\mathbb{E}[N]$.
+
+	\begin{flushright}
+		\kaishu
+		供题人: 徐思懿\\
+		题源: MSE.
+	\end{flushright}
+
+	\begin{solution}
+		注意到$N$为非负离散型随机变量, 因此有
+		\begin{equation*}
+			\mathbb{E}[N]=1+\sum_{k=1}^{\infty}\mathbb{P}(N>k).
+		\end{equation*}
+		而
+		\begin{align*}
+			\mathbb{P}(N>k)&=\mathbb{P}(S_k<1)\\
+			&=\mathbb{P}(X_1+\cdots+X_k<1)\\
+			&=\int_{\{(x_1,\cdots,x_k)\in[0,1]^k\mid x_1+\cdots+x_k<1\}}f(x_1,\cdots,x_k)\mathrm{d}x\\
+			&=\frac{1}{k!}.
+		\end{align*}
+		这里$f(x_1,\cdots,x_k)=f_1(x_1)\cdots f_k(x_k)=1^k=1$为$(X_1,\cdots,X_k)$的联合密度. 而积分区域即$k$维单形, 于是
+		\begin{equation*}
+			\mathbb{E}[N]=1+\sum_{k=1}^{\infty}\frac{1}{k!}=e.
+		\end{equation*}
+	\end{solution}
+\end{enumerate}
+
+
+\end{document}

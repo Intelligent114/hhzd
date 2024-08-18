@@ -1,0 +1,132 @@
+%!TEX program = xelatex
+% 完整编译: xelatex -> biber/bibtex -> xelatex -> xelatex
+% 欢迎参加《瀚海之巅》项目的供题或征解活动！
+% ————————————————————模板使用说明——————————————————————————
+%本模板改编自elegantpaper模板，该模板的环境使用方式与大多数模板一致，如有疑问可以阅读官方文件的解释，或直接阅读.cls文件的内容。
+%文档标题应当注明征解及其期号和题号，或供题
+%作者写你自己即可，但为了排版方便起见，建议在题目末尾“供稿人”处加上你的名字。
+%日期随意
+%正文部分已经列举了你可能会用到的列表环境的样式，你可以摸索看看怎么合适。
+\documentclass[lang=cn,12pt,a4paper]{elegantpaper.cls}
+
+\title{《瀚海之巅》2024 第3期·征解}
+\author{中国科大数学科学学院团委\quad《瀚海之巅》项目组}
+\date{\zhtoday}
+
+% 本文档命令
+\usepackage{array}
+\newcommand{\ccr}[1]{\makecell{{\color{#1}\rule{1cm}{1cm}}}}
+\usepackage{tikz}   %交换图表
+\usepackage{tikz-cd}
+\usepackage[mathscr]{euscript}
+\usepackage{draftwatermark}         % 所有页加水印
+\SetWatermarkText{\includegraphics{image/logo}} % 设置水印内容
+\SetWatermarkLightness{0}             % 设置水印透明度 0-1 对图片无效
+\SetWatermarkScale{0.6} % 设置水印大小 0-1
+
+
+\begin{document}
+
+\maketitle
+\begin{enumerate}
+	\item 
+	证明:如果映射 $f:[0,1]\rightarrow[0,1]$ 连续, $f(0)=0,f(1)=1$,并且在 $[0,1]$ 上 $(f\circ f)(x)\equiv x,$ 则 $f(x)\equiv x.$
+	
+	\begin{flushright}
+		\kaishu
+		供题人:郭维基
+	\end{flushright}
+	
+	
+	\item 称数列$\{a_n\}_{n\geq 0}$为\textbf{完全单调的(completely monotonic)}, 若对任意$k,n\in\mathbb N$, 总有$(-1)^k(\Delta^k a)_n\geq 0$, 这里$\Delta$是差分算子, 即$(\Delta a)_n=a_{n+1}-a_n$.
+	
+	\begin{enumerate}
+	\item 若$\mu$是$[0,1]$上的某个Borel测度, 令$a_n=\int x^n\mathrm{d}\mu$, 验证$\{a_n\}$是完全单调数列.
+	
+	\item 考察$\{a_n\}$的对数凸性, 即$a_na_{n+2}\geq a_{n+1}^2$, $n\in\mathbb N$. Hausdorff矩问题是说: 对任意的完全单调数列$\{a_n\}$, 是否总存在Borel测度$\mu$满足(a)的条件. 在承认其正确性的前提下, 直接推出$\{a_n\}$具有对数凸性.
+	
+	\item 考虑更加初等的证明. 设数列$\{a_n\}$是完全单调的.
+	
+	\begin{enumerate}[i]
+	\item 证明: 对任意$k,m,n\in \mathbb N$, \[(-1)^k(\Delta^k a)_m=\sum_{i=0}^{n}(-1)^{k+i}\binom{n}{i}(\Delta^{k+i}a)_{m+n-i}.\]
+	
+	\item 对于$u,v>0$, $uv=\dfrac{1}{4}$, 证明: $u(\Delta^2 a)_0+(\Delta a)_1+va_2\geq0$.
+	
+	\item 证明: $a_na_{n+2}\geq a_{n+1}^2$, $n\in\mathbb N$.
+\end{enumerate}
+		\end{enumerate}
+	
+	\begin{flushright}
+		\kaishu
+		供题人：胡洁洋
+	\end{flushright}
+	
+	\item 证明$\zeta(\frac{1}{2}+i \tau) \ll \tau^{\frac{1}{6}}\log \tau \quad (\tau>0, \tau \to \infty).$ 
+			\begin{flushright}
+			\kaishu
+			供题人：杨文颜
+		\end{flushright}
+		
+		\item 计算$j(\sqrt{3} i)$的值.
+		\begin{flushright}
+			\kaishu
+			供题人：杨文颜
+		\end{flushright}
+
+\item(Apostol)
+
+我们记
+\[G(x)=\sum_{n\geq 1} \dfrac{n^5x^n}{1-x^n},\]
+且
+\[f(x)=\sum_{n\geq 1, n \textbf{奇数}}\dfrac{n^5x^n}{1+x^n}.\]
+
+\begin{enumerate}
+	\item 证明$F(x) = G(x)-34G(x^2)+64G(x^4).$
+	
+	\item 证明
+	
+	\[ \sum_{n\geq 1, n \textbf{奇数}} \dfrac{n^5}{1+e^{n\pi}} = \frac{31}{504}.\]
+\end{enumerate}
+\begin{flushright}
+	\kaishu
+	供题人：杨文颜
+\end{flushright}
+	
+	
+	
+	
+		\item 对正整数 $n$, 设 $x_{ij} \in [0,1]$, $\forall 1 \leq i,j \leq n$. 证明: \[\prod_{j=1}^{n}(1 - \prod_{i=1}^{n}x_{ij}) + \prod_{i=1}^{n}(1 - \prod_{j=1}^{n}(1 - x_{ij})) \geq 1.\]
+		
+		
+		\begin{flushright}
+			\kaishu
+			供题人：邓博文
+		\end{flushright}
+		
+		
+			\item
+			设$L/K$为可分代数扩张. $f\in K[X_1,\dots,X_n]$. 存在$g\in L[X_1,\dots,X_n]$, $f=g^m$. 证明: 存在$c\in K$, $h\in K[X_1,\dots,X_n]$, 使得$f=ch^m$.
+			
+		
+		\begin{flushright}
+			\kaishu
+			供题人：孙之棋
+		\end{flushright}
+	
+
+ 
+ 
+ \item 设$X_i\sim U(0,1)$独立同分布, $i\geq 1$. 记$S_n=\sum_{i=1}^{n}X_i$, 定义
+ \begin{equation*}
+ 	N=\min\{n\in\mathbb{N}\mid S_n\geq 1\}.
+ \end{equation*}
+ 求$\mathbb{E}[N]$.
+ \begin{flushright}
+ 	\kaishu
+ 	供题人: 徐思懿\\
+ 	题源: MSE.
+ \end{flushright}
+\end{enumerate}
+
+
+\end{document}
